@@ -19,17 +19,12 @@ public class playerMovement : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-        if (playerNumber == 1) {
-			UpdatePlayer1();
-		} 
-		if (playerNumber == 2) {
-			UpdatePlayer2();
-		}
+        UpdatePlayer();
 	}
 	
-	void UpdatePlayer1 (){
-        float hori = Input.GetAxis ("Horizontal1");
-        float vert = Input.GetAxis ("Vertical1");
+	void UpdatePlayer(){
+        float hori = Input.GetAxis ("Horizontal"+playerNumber);
+        float vert = Input.GetAxis ("Vertical"+playerNumber);
 		Vector3 newPosition = transform.position;
 		Vector3 movement = new Vector3(hori * speed, vert * speed, 0);
 		transform.Translate(movement * Time.deltaTime);
@@ -49,16 +44,6 @@ public class playerMovement : MonoBehaviour {
 			Vector3 temp = new Vector3(transform.position.x, -boundY, 0);
 			transform.position = temp;
 		}
-		
-	}
-	
-	void UpdatePlayer2 (){
-        float hori = Input.GetAxis ("Horizontal2");
-        float vert = Input.GetAxis ("Vertical2");
-		Vector3 newPosition = transform.position;
-		Vector3 movement = new Vector3(hori*speed, vert*speed, 0);
-		newPosition += movement;
-		transform.position = newPosition;
 		
 	}
 }
