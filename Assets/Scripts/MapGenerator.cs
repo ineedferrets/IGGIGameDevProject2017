@@ -1,24 +1,27 @@
-﻿using System.Collections;
+﻿// Adopted from a tutorial by sebastian lague 
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MapGenerator : MonoBehaviour {
 
+	// Set prefabs in editor
 	public Transform tilePrefab; 
 	public Transform obstaclePrefab; 
 	public Vector2 mapSize;
-
+	// This is the outline of tiles
 	[Range(0,1)]
 	public float outlinePercent;
-
+	// Obstacle Density 
 	[Range(0,1)]
-	public float obstaclePercent; 
+	public float obstacleDensity; 
 
 	public float tileSize;
-
+	// Storing Coordinates for tiles during Obstacle Generation
 	List<Coord> allTileCoords; 
 	Queue<Coord> shuffledTileCoords; 
-
+	// The seed used for obstacle generation - can be set on start of each runtime/level 
 	public int seed = 001;
 	Coord mapCenter;
 
@@ -56,7 +59,7 @@ public class MapGenerator : MonoBehaviour {
 
 		bool[,] obstacleMap = new bool[(int)mapSize.x, (int)mapSize.y];
 
-		int obstacleCount = (int)(mapSize.x * mapSize.y * obstaclePercent);
+		int obstacleCount = (int)(mapSize.x * mapSize.y * obstacleDensity);
 		int currentObstacleCount = 0;
 
 		for (int i=0; i < obstacleCount; i ++){
@@ -78,6 +81,7 @@ public class MapGenerator : MonoBehaviour {
 
 	}
 
+	// Ensure that no tile is unreachable at the start of the game
 	bool MapIsFullyAccessible(bool[,] obstacleMap, int currentObstacleCount){
 		bool[,] mapFlags = new bool[obstacleMap.GetLength(0), obstacleMap.GetLength(1)];
 		Queue<Coord> queue  = new Queue<Coord> ();
@@ -122,6 +126,7 @@ public class MapGenerator : MonoBehaviour {
 		return randomCoord;
 	}
 
+	// Overriding the == and != operators for map coordinates
 	public struct Coord {
 		public int x;
 		public int y; 
