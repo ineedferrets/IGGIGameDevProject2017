@@ -2,31 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Potion behaviour and information.
+/// </summary>
 public class PotionInformation : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 }
 
+/// <summary>
+/// Potion class inherits from interactive object. Contains all possible Potion types.
+/// </summary>
 public class Potion : InteractiveObject {
-    public enum PotionType { bomb, wall };
+    /// <summary>
+    /// Enum type of potion.
+    /// </summary>
+    public enum Type { bomb, wall };
 
-    private PotionType _mPotionType;
-    public PotionType mPotionType {
+    // Publicly accessible potion type. Privately assigned.
+    private Type _enumType;
+    public Type enumType {
         get {
-            return _mPotionType;
+            return _enumType;
         }
     }
 
-    public Potion(PotionType potionType) : base(potionType.ToString()+"potion") {
-        _mPotionType = potionType;
+    public Potion(Type potionType) : base(potionType.ToString()+"potion") {
+        _enumType = potionType;
     }
 }

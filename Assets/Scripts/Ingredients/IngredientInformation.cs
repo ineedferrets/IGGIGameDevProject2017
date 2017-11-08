@@ -1,56 +1,52 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class IngredientInformation : MonoBehaviour {
 
+    // Item Ingredient Type is set in editor.
     [SerializeField]
-    private Ingredient.IngredientType _itemIngredient;
-    public Ingredient.IngredientType itemIngredient {
+    private Ingredient.Type _itemIngredient;
+    public Ingredient.Type itemIngredient {
         get {
             return _itemIngredient;
         }
     }
 
+    /// <summary>
+    /// The ingredient object holding.
+    /// </summary>
     public Ingredient mIngredient { get; private set; }
 
+    /// <summary>
+    /// On scene start.
+    /// </summary>
     private void Awake() {
-        if (itemIngredient == Ingredient.IngredientType.red)
-            mIngredient = new RedIngredient();
-        else if (itemIngredient == Ingredient.IngredientType.blue)
-            mIngredient = new BlueIngredient();
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            if(other.GetComponent<PlayerInformation>().GiveItem(mIngredient))
-            {
-                Destroy(gameObject);
-            }
-        }
+        mIngredient = new Ingredient(_itemIngredient);
     }
 }
 
+/// <summary>
+/// Ingredient class inherits from interactive object. Contains all possible ingredient types.
+/// </summary>
+public class Ingredient : InteractiveObject {
+    /// <summary>
+    /// Enum type of ingredient.
+    /// </summary>
+    public enum Type { red, blue };
 
-public abstract class Ingredient : InteractiveObject {
-    public enum IngredientType { red, blue };
-
-    private IngredientType _mIngredient;
-    public IngredientType mIngredient {
+    // Publicly accessible ingredient type. Privately assigned.
+    private Type _enumType;
+    public Type enumType {
         get {
-            return _mIngredient;
+            return _enumType;
         }
     }
 
-    public Ingredient(IngredientType ingredientType) : base(ingredientType.ToString()+"ingredient") { _mIngredient = ingredientType; }
-}
-
-public class RedIngredient : Ingredient {
-    public RedIngredient() : base (IngredientType.red) { }
-}
-
-public class BlueIngredient : Ingredient {
-    public BlueIngredient() : base (IngredientType.blue) { }
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="ingredientType"></param>
+    public Ingredient(Type ingredientType) : base(ingredientType.ToString()+"ingredient") { _enumType = ingredientType; }
 }

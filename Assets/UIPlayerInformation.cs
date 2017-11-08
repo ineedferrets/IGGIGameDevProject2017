@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIPlayerInformation : MonoBehaviour {
 
-    public PlayerInformation player;
+    public PlayerController player;
 
     public Image leftButton;
     public Image upButton;
