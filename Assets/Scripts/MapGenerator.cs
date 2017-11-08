@@ -144,4 +144,12 @@ public class MapGenerator : MonoBehaviour {
 			return !(c1 == c2); 
 		}
 	}
+	
+	public float getX() {
+		return mapSize.x;
+	}
+	
+	public float getY() {
+		return mapSize.y;
+	}
 }
