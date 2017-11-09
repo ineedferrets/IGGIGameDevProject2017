@@ -53,6 +53,7 @@ public class Potion : InteractiveObject {
 	}
 	
 	public void BombEffect() {
+		
 		// TODO:
 		// If any adjacent tiles to the bomb are obstacles, make them flat tiles
 		// If any witch within 3 (?) spaces of the potion, make them die
