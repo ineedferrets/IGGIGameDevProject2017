@@ -16,11 +16,13 @@ public class MapGenerator : MonoBehaviour {
 	// Obstacle Density 
 	[Range(0,1)]
 	public float obstacleDensity; 
-
-	public float tileSize;
 	// Storing Coordinates for tiles during Obstacle Generation
+	public float tileSize;
 	List<Coord> allTileCoords; 
 	Queue<Coord> shuffledTileCoords; 
+	Queue<Coord> shuffledOpenTileCoords;
+	Transform[,] tileMap;
+
 	// The seed used for obstacle generation - can be set on start of each runtime/level 
 	public int seed = 001;
 	Coord mapCenter;
@@ -30,7 +32,9 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public void GenerateMap(){
+		tileMap = new Transform[(int)mapSize.x, (int)mapSize.y];
 
+		// Generate coordinates for all tiles
 		allTileCoords = new List<Coord> ();
 		for (int x = 0; x < mapSize.x; x++) {
 			for (int y = 0; y < mapSize.y; y ++) {
@@ -54,13 +58,16 @@ public class MapGenerator : MonoBehaviour {
 				Transform newTile = Instantiate(tilePrefab, tilePosition, Quaternion.Euler(0,0,0)) as Transform;
 				newTile.localScale = Vector3.one * (1-outlinePercent) * tileSize;
 				newTile.parent = mapHolder;
+				tileMap[x,y] = newTile;
 			}
 		}
 
+		// Spawning Obstacles 
 		bool[,] obstacleMap = new bool[(int)mapSize.x, (int)mapSize.y];
 
 		int obstacleCount = (int)(mapSize.x * mapSize.y * obstacleDensity);
 		int currentObstacleCount = 0;
+		List<Coord> allOpenCoords = new List<Coord>(allTileCoords);
 
 		for (int i=0; i < obstacleCount; i ++){
 			Coord randomCoord = GetRandomCoord();
@@ -72,6 +79,8 @@ public class MapGenerator : MonoBehaviour {
 				Transform newObstacle = Instantiate(obstaclePrefab, obstaclePosition, Quaternion.identity) as Transform; 
 				newObstacle.parent = mapHolder;
 				newObstacle.localScale = Vector3.one * (1-outlinePercent) * tileSize;
+
+				allOpenCoords.Remove(randomCoord);
 			}
 			else{
 				obstacleMap[randomCoord.x, randomCoord.y] = false;
@@ -79,7 +88,11 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 
+		shuffledOpenTileCoords = new Queue<Coord>(Utility.ShuffleArray(allOpenCoords.ToArray(), seed));
+
 	}
+
+
 
 	// Ensure that no tile is unreachable at the start of the game
 	bool MapIsFullyAccessible(bool[,] obstacleMap, int currentObstacleCount){
@@ -124,6 +137,12 @@ public class MapGenerator : MonoBehaviour {
 		Coord randomCoord = shuffledTileCoords.Dequeue ();
 		shuffledTileCoords.Enqueue (randomCoord);
 		return randomCoord;
+	}
+
+	public Transform GetRandomOpenTile(){
+		Coord randomCoord = shuffledOpenTileCoords.Dequeue();
+		shuffledOpenTileCoords.Enqueue(randomCoord);
+		return tileMap[randomCoord.x, randomCoord.y];
 	}
 
 	// Overriding the == and != operators for map coordinates
