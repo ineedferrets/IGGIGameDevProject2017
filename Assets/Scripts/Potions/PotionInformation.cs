@@ -29,7 +29,6 @@ public class Potion : InteractiveObject {
 
     public Potion(Type potionType, Player player) : base(potionType.ToString()+"potion") {
         _enumType = potionType;
-		currentPlayer = player
     }
 	
 	public void PlacePotion() { // when potion is placed
