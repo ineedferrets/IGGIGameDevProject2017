@@ -2,7 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CauldronCrafting : MonoBehaviour {
+public class CauldronController : MonoBehaviour, IDestructable {
+
+    [SerializeField]
+    private float _health;
+    public float health {
+        get {
+            return _health;
+        }
+    }
 
     /// <summary>
     /// Ingredient pool within the cauldron.
@@ -59,6 +67,17 @@ public class CauldronCrafting : MonoBehaviour {
             return null;
         }
 
+    }
+
+    public bool ApplyDamage(float damage)
+    {
+        _health -= damage;
+
+        if (_health <= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
