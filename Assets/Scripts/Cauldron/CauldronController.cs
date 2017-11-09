@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CauldronController : MonoBehaviour, IDestructable {
 
-    [SerializeField]
+    public float maxHealth = 100;
+
     private float _health;
     public float health {
         get {
@@ -21,6 +22,7 @@ public class CauldronController : MonoBehaviour, IDestructable {
     /// Initialisation by setting queue and the relative player
     /// </summary>
     void Start() {
+        _health = maxHealth;
         ingredientQueue = new List<Ingredient>(2);
     }
 
