@@ -28,7 +28,6 @@ public class Potion : InteractiveObject {
     /// Enum type of potion.
     /// </summary>
     public enum Type { bomb, wall };
-	private PlayerController currentPlayer;
     // Publicly accessible potion type. Privately assigned.
     private Type _enumType;
 	
@@ -38,7 +37,7 @@ public class Potion : InteractiveObject {
         }
     }
 
-    public Potion(Type potionType, PlayerController player) : base(potionType.ToString()+"potion") {
+    public Potion(Type potionType) : base(potionType.ToString()+"potion") {
         _enumType = potionType;
     }
 	
