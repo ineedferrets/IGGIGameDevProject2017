@@ -50,26 +50,7 @@ public class PlayerController : MonoBehaviour {
 
     // Check if player is pressing a button and drop object if so.
     void Update() {
-<<<<<<< HEAD
-        if (!buttonPressed) {
-            if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
-                Debug.Log("Left Face Pressed!");
-                _leftInventorySlot.SpawnObject(transform.position);
-                _leftInventorySlot = null;
-            } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber) && _upInventorySlot != null) {
-                Debug.Log("Up Face Pressed!");
-                _upInventorySlot.SpawnObject(transform.position);
-                _upInventorySlot = null;
-            } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber) && _rightInventorySlot != null) {
-                Debug.Log("Right Face Pressed!");
-                _rightInventorySlot.SpawnObject(transform.position);
-                _rightInventorySlot = null;
-            } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber) && _downInventorySlot != null) {
-                Debug.Log("Down Face Pressed!");
-                _downInventorySlot.SpawnObject(transform.position);
-                _downInventorySlot = null;
-            }
-=======
+
         if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
             _leftInventorySlot.SpawnObject(transform.position);
             _leftInventorySlot = null;
@@ -82,7 +63,6 @@ public class PlayerController : MonoBehaviour {
         } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber) && _downInventorySlot != null) {
             _downInventorySlot.SpawnObject(transform.position);
             _downInventorySlot = null;
->>>>>>> refs/remotes/origin/master
         }
         buttonPressed = false;
     }

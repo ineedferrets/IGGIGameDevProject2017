@@ -7,6 +7,17 @@ using UnityEngine;
 /// </summary>
 public class PotionInformation : MonoBehaviour {
 
+    public Potion potion;
+    public float timeUntilEffect;
+
+    private void Start() {
+
+        Invoke("PlacePotion", timeUntilEffect);
+    }
+
+    private void PlacePotion() {
+        potion.PlacePotion();
+    }
 }
 
 /// <summary>
@@ -17,7 +28,7 @@ public class Potion : InteractiveObject {
     /// Enum type of potion.
     /// </summary>
     public enum Type { bomb, wall };
-	private Player currentPlayer;
+	private PlayerController currentPlayer;
     // Publicly accessible potion type. Privately assigned.
     private Type _enumType;
 	
@@ -27,18 +38,18 @@ public class Potion : InteractiveObject {
         }
     }
 
-    public Potion(Type potionType, Player player) : base(potionType.ToString()+"potion") {
+    public Potion(Type potionType, PlayerController player) : base(potionType.ToString()+"potion") {
         _enumType = potionType;
     }
 	
 	public void PlacePotion() { // when potion is placed
 		// TODO: put potion in space that witch is currently standing. Or in square next to witch in direction witch is facing. Which is better?
 		
-		if (_enumType = Type.bomb) {
-			Invoke("BombEffect", 3f); // Invoke does the named method after the number of seconds indicated by the float.
+		if (_enumType == Type.bomb) {
+            BombEffect();
 		}
-		if (_enumType = Type.wall) {
-			Invoke("WallEffect", 3f); // Invoke does the named method after the number of seconds indicated by the float.
+		if (_enumType == Type.wall) {
+            WallEffect();
 		}
 	}
 	
