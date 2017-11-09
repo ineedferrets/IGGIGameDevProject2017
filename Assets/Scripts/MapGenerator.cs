@@ -20,7 +20,7 @@ public class MapGenerator : MonoBehaviour {
 	public float tileSize;
 	List<Coord> allTileCoords; 
 	Queue<Coord> shuffledTileCoords; 
-	Queue<Coord> shuffledOpenTileCoords;
+	List<Coord> shuffledOpenTileCoords;
 	Transform[,] tileMap;
 
 	// The seed used for obstacle generation - can be set on start of each runtime/level 
@@ -88,7 +88,7 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 
-		shuffledOpenTileCoords = new Queue<Coord>(Utility.ShuffleArray(allOpenCoords.ToArray(), seed));
+		shuffledOpenTileCoords = new List<Coord>(Utility.ShuffleArray(allOpenCoords.ToArray(), seed));
 
 	}
 
@@ -140,8 +140,7 @@ public class MapGenerator : MonoBehaviour {
 	}
 
 	public Transform GetRandomOpenTile(){
-		Coord randomCoord = shuffledOpenTileCoords.Dequeue();
-		shuffledOpenTileCoords.Enqueue(randomCoord);
+		Coord randomCoord = shuffledOpenTileCoords[Random.Range(0, shuffledOpenTileCoords.Count)];
 		return tileMap[randomCoord.x, randomCoord.y];
 	}
 
