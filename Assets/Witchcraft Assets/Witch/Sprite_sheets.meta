@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: d325336c3fb074c49a0860e2831dd0f9
 folderAsset: yes
 timeCreated: 1510222178
+=======
+guid: 4d5b1bdd999008a4c9d237b40057758b
+folderAsset: yes
+timeCreated: 1510223583
+>>>>>>> refs/remotes/origin/master
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
