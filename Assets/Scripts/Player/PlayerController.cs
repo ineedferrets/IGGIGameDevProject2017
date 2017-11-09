@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
     [SerializeField]
     [Tooltip("Player numbers start from 1.")]
     private int _mPlayerNumber = 0;
+	private bool playerExploded;
     public int PlayerNumber {
         get {
             return _mPlayerNumber;
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour {
         _upInventorySlot = null;
         _rightInventorySlot = null;
         _downInventorySlot = null;
+		playerExploded = false;
 	}
 
     private bool buttonPressed = false;
@@ -80,6 +82,12 @@ public class PlayerController : MonoBehaviour {
         if (IngredientCheckAndRun(ingredient)) {
             Destroy(other.gameObject);
         }
+		// EXPLOSION
+		if (other.gameObject.tag == "Explosion" && playerExploded == false) {
+			print("Oh dear i'm dead");
+			playerExploded = true;
+			// TODO: make player die and respawn at cauldron
+		}
     }
 
     /// <summary>
