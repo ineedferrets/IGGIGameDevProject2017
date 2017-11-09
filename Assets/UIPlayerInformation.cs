@@ -14,9 +14,20 @@ public class UIPlayerInformation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        leftButton.sprite = player.leftInventorySlot.uiSprite;
-        upButton.sprite = player.upInventorySlot.uiSprite;
-        rightButton.sprite = player.rightInventorySlot.uiSprite;
-        downButton.sprite = player.downInventorySlot.uiSprite;
+        if (player.leftInventorySlot != null) {
+            leftButton.sprite = player.leftInventorySlot.uiSprite;
+        }
+
+        if (player.upInventorySlot != null) {
+            upButton.sprite = player.upInventorySlot.uiSprite;
+        }
+
+        if (player.rightInventorySlot != null) {
+            rightButton.sprite = player.rightInventorySlot.uiSprite;
+        }
+
+        if (player.downInventorySlot != null) {
+            downButton.sprite = player.downInventorySlot.uiSprite;
+        }
     }
 }

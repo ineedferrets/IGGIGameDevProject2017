@@ -19,18 +19,22 @@ public class PlayerController : MonoBehaviour {
     public CauldronCrafting playerCauldron;
 
     // Left face button inventory slot. Publicly accessible. Privately assigned.
+    [SerializeField]
     private InteractiveObject _leftInventorySlot;
     public InteractiveObject leftInventorySlot { get { return _leftInventorySlot; } }
 
     // Up face button inventory slot. Publicly accessible. Privately assigned.
+    [SerializeField]
     private InteractiveObject _upInventorySlot;
     public InteractiveObject upInventorySlot { get { return _upInventorySlot; } }
 
     // Right face button inventory slot. Publicly accessible. Privately assigned.
+    [SerializeField]
     private InteractiveObject _rightInventorySlot;
     public InteractiveObject rightInventorySlot { get { return _rightInventorySlot; } }
 
     // Down face button inventory slot. Publicly accessible. Privately assigned.
+    [SerializeField]
     private InteractiveObject _downInventorySlot;
     public InteractiveObject downInventorySlot { get { return _downInventorySlot; } }
 
@@ -42,21 +46,30 @@ public class PlayerController : MonoBehaviour {
         _downInventorySlot = null;
 	}
 
+    private bool buttonPressed = false;
+
     // Check if player is pressing a button and drop object if so.
     void Update() {
-        if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
-            _leftInventorySlot.SpawnObject(transform.position);
-            _leftInventorySlot = null;
-        } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber) && _upInventorySlot != null) {
-            _upInventorySlot.SpawnObject(transform.position);
-            _upInventorySlot = null;
-        } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber) && _rightInventorySlot != null) {
-            _rightInventorySlot.SpawnObject(transform.position);
-            _rightInventorySlot = null;
-        } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber) && _downInventorySlot != null) {
-            _downInventorySlot.SpawnObject(transform.position);
-            _rightInventorySlot = null;
+        if (!buttonPressed) {
+            if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
+                Debug.Log("Left Face Pressed!");
+                _leftInventorySlot.SpawnObject(transform.position);
+                _leftInventorySlot = null;
+            } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber) && _upInventorySlot != null) {
+                Debug.Log("Up Face Pressed!");
+                _upInventorySlot.SpawnObject(transform.position);
+                _upInventorySlot = null;
+            } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber) && _rightInventorySlot != null) {
+                Debug.Log("Right Face Pressed!");
+                _rightInventorySlot.SpawnObject(transform.position);
+                _rightInventorySlot = null;
+            } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber) && _downInventorySlot != null) {
+                Debug.Log("Down Face Pressed!");
+                _downInventorySlot.SpawnObject(transform.position);
+                _downInventorySlot = null;
+            }
         }
+        buttonPressed = false;
     }
 
     // On trigger stay (used instead of enter since buttons are also checked).
@@ -68,7 +81,7 @@ public class PlayerController : MonoBehaviour {
         // Check to see if collided with ingredient
         IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
         if (IngredientCheckAndRun(ingredient)) {
-            Destroy(other);
+            Destroy(other.gameObject);
         }
     }
 
@@ -109,68 +122,83 @@ public class PlayerController : MonoBehaviour {
         // Does the collided object contain an INgredientInformation component? I.e. is it an ingredient
         if (ingredient != null) {
             if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
+                Debug.Log("Left Face Pressed!");
+                buttonPressed = true;
                 // Is the left inventory slot occuppied?
                 switch (_leftInventorySlot == null)
                 {
                     // Pick up ingredient.
                     case true:
                         _leftInventorySlot = ingredient.mIngredient;
+                        return true;
                         break;
                     // Swap ingredient with inventory slot.
                     case false:
                         InteractiveObject intermediary = _leftInventorySlot;
                         _leftInventorySlot = ingredient.mIngredient;
                         intermediary.SpawnObject(transform.position);
+                        return true;
                         break;
                 }
             } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber)) {
+                Debug.Log("Up Face Pressed!");
+                buttonPressed = true;
                 // Is the up inventory slot occuppied?
                 switch (_upInventorySlot == null)
                 {
                     // Pick up ingredient.
                     case true:
                         _upInventorySlot = ingredient.mIngredient;
+                        return true;
                         break;
                     // Swap ingredient with inventory slot.
                     case false:
                         InteractiveObject intermediary = _upInventorySlot;
                         _upInventorySlot = ingredient.mIngredient;
                         intermediary.SpawnObject(transform.position);
+                        return true;
                         break;
                 }
             } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber)) {
+                Debug.Log("Right Face Pressed!");
+                buttonPressed = true;
                 // Is the right inventory slot occuppied?
                 switch (_rightInventorySlot == null)
                 {
                     // Pick up ingredient.
                     case true:
                         _rightInventorySlot = ingredient.mIngredient;
+                        return true;
                         break;
                     // Swap ingredient with inventory slot.
                     case false:
                         InteractiveObject intermediary = _rightInventorySlot;
                         _rightInventorySlot = ingredient.mIngredient;
                         intermediary.SpawnObject(transform.position);
+                        return true;
                         break;
                 }
             } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber)) {
+                Debug.Log("Down Face Pressed!");
+                buttonPressed = true;
                 // Is the down inventory slot occuppied?
                 switch (_downInventorySlot == null)
                 {
                     // Pick up ingredient.
                     case true:
                         _downInventorySlot = ingredient.mIngredient;
+                        return true;
                         break;
                     // Swap ingredient with inventory slot.
                     case false:
                         InteractiveObject intermediary = _downInventorySlot;
                         _downInventorySlot = ingredient.mIngredient;
                         intermediary.SpawnObject(transform.position);
+                        return true;
                         break;
                 }
             }
-            // Collision is with ingredient.
-            return true;
+            return false;
         }
         // Collision is not with ingredient.
         return false;

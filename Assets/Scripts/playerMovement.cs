@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerMovement : MonoBehaviour {
 
 	public float speed = 1;
-	public int playerNumber = 1;
+	private int playerNumber = 1;
 	private float boundX;
 	private float boundY;
 	
@@ -15,7 +15,8 @@ public class playerMovement : MonoBehaviour {
 		boundX = (mapGen.getX() / 2) - 0.5f;
 		boundY = (mapGen.getY() / 2) - 0.5f;
 		print("X Boundary " + boundX +", Y Boundary " + boundY);
-		
+
+        playerNumber = GetComponent<PlayerController>().PlayerNumber;
 	}
 	// Update is called once per frame
 	void Update () {
