@@ -22,7 +22,10 @@ public abstract class InteractiveObject {
     /// Constructer.
     /// </summary>
     /// <param name="name"></param>
-    public InteractiveObject(string name) { _name = name; uiSprite = Resources.Load("Items/ui" + _name) as Sprite; }
+    public InteractiveObject(string name) {
+        _name = name;
+        uiSprite = Resources.Load<GameObject>("Items/ui" + _name).GetComponent<SpriteRenderer>().sprite;
+    }
 
     /// <summary>
     /// For players to spawn instances of objects in the scene.

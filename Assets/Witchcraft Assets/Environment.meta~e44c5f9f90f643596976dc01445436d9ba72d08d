@@ -1,16 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
-guid: af3ba8cca4214419d8fea5d17d700380
-timeCreated: 1510222165
-=======
-<<<<<<< HEAD
-guid: 66b9d1440eb2f9b42aa1cc485edd6ec3
+guid: 357c20ccebd0d194980cb1a491c9b662
+folderAsset: yes
 timeCreated: 1510222178
 =======
-guid: 8acbaae7ed3b9214ea1228ca2b846229
+guid: cc334081d9677e04aa04a3755cc89318
+folderAsset: yes
 timeCreated: 1510223583
 >>>>>>> refs/remotes/origin/master
->>>>>>> e44c5f9f90f643596976dc01445436d9ba72d08d
 licenseType: Free
 DefaultImporter:
   externalObjects: {}

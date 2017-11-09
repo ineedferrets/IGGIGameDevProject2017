@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 57086ad727dac4c34978947cb866ffda
 timeCreated: 1510222165
+=======
+<<<<<<< HEAD
+guid: 010feaf67feb9a044b3ab040c696cc77
+timeCreated: 1510222178
+=======
+guid: 5b15f2af556df2f40b7229ae24c287f4
+timeCreated: 1510223583
+>>>>>>> refs/remotes/origin/master
+>>>>>>> e44c5f9f90f643596976dc01445436d9ba72d08d
 licenseType: Free
 DefaultImporter:
   externalObjects: {}
