@@ -46,12 +46,12 @@ public class PlayerController : MonoBehaviour {
         _downInventorySlot = null;
 	}
 
-    private bool buttonPressed = false;
+    private bool collisionHappening = false;
 
     // Check if player is pressing a button and drop object if so.
     void Update() {
 
-        if (!buttonPressed) {
+        if (!collisionHappening) {
             if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
                 _leftInventorySlot.SpawnObject(transform.position);
                 _leftInventorySlot = null;
@@ -66,20 +66,22 @@ public class PlayerController : MonoBehaviour {
                 _downInventorySlot = null;
             }
         }
-        buttonPressed = false;
     }
 
     // On trigger stay (used instead of enter since buttons are also checked).
     void OnTriggerStay(Collider other) {
         // Check to see if collided with cauldron.
         CauldronController cauldron = other.GetComponent<CauldronController>();
-        CauldronCheckAndRun(cauldron);
+        bool cauldronCollision = CauldronCheckAndRun(cauldron);
 
         // Check to see if collided with ingredient
         IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
-        if (IngredientCheckAndRun(ingredient)) {
+        bool ingredientCollision = IngredientCheckAndRun(ingredient);
+        if (ingredientCollision) {
             Destroy(other.gameObject);
         }
+
+        collisionHappening = cauldronCollision || ingredientCollision;
     }
 
     /// <summary>
@@ -119,7 +121,6 @@ public class PlayerController : MonoBehaviour {
         // Does the collided object contain an INgredientInformation component? I.e. is it an ingredient
         if (ingredient != null) {
             if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
-                buttonPressed = true;
                 // Is the left inventory slot occuppied?
                 switch (_leftInventorySlot == null)
                 {
@@ -135,7 +136,6 @@ public class PlayerController : MonoBehaviour {
                         return true;
                 }
             } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber)) {
-                buttonPressed = true;
                 // Is the up inventory slot occuppied?
                 switch (_upInventorySlot == null)
                 {
@@ -151,7 +151,6 @@ public class PlayerController : MonoBehaviour {
                         return true;
                 }
             } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber)) {
-                buttonPressed = true;
                 // Is the right inventory slot occuppied?
                 switch (_rightInventorySlot == null)
                 {
@@ -167,7 +166,6 @@ public class PlayerController : MonoBehaviour {
                         return true;
                 }
             } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber)) {
-                buttonPressed = true;
                 // Is the down inventory slot occuppied?
                 switch (_downInventorySlot == null)
                 {

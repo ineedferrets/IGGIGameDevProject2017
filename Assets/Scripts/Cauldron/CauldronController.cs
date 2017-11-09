@@ -50,6 +50,7 @@ public class CauldronController : MonoBehaviour, IDestructable {
 
         // Add ingredient to recipe queue and check whether there are enough ingredients to make a potion.
         ingredientQueue.Add(ingredient);
+        Debug.Log(ingredientQueue[0] + " " + ingredientQueue[1]);
         return RecipeCheck();
     }
 
