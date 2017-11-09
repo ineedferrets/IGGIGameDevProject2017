@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
             _rightInventorySlot = null;
         } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber) && _downInventorySlot != null) {
             _downInventorySlot.SpawnObject(transform.position);
-            _rightInventorySlot = null;
+            _downInventorySlot = null;
         }
     }
 
