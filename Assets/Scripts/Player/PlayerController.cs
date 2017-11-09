@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Reference to players home cauldron
-    public CauldronCrafting playerCauldron;
+    public CauldronController playerCauldron;
 
     // Left face button inventory slot. Publicly accessible. Privately assigned.
     [SerializeField]
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
     // On trigger stay (used instead of enter since buttons are also checked).
     void OnTriggerStay(Collider other) {
         // Check to see if collided with cauldron.
-        CauldronCrafting cauldron = other.GetComponent<CauldronCrafting>();
+        CauldronController cauldron = other.GetComponent<CauldronController>();
         CauldronCheckAndRun(cauldron);
 
         // Check to see if collided with ingredient
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
     /// </summary>
     /// <param name="cauldron">CauldronCrafting component of cauldron.</param>
     /// <returns>Returns whether the CauldronCrafting component is not null.</returns>
-    private bool CauldronCheckAndRun(CauldronCrafting cauldron) {
+    private bool CauldronCheckAndRun(CauldronController cauldron) {
         // Does the collided object contain a CauldronCrafting component? I.e. is it a cauldron.
         if (cauldron != null && cauldron == playerCauldron) {
             if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
