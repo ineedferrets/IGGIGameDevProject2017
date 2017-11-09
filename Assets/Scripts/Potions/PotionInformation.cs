@@ -42,7 +42,7 @@ public class Potion : InteractiveObject {
     }
 	
 	public void PlacePotion() { // when potion is placed
-		// TODO: put potion in space that witch is currently standing. Or in square next to witch in direction witch is facing. Which is better?
+		// TODO: put potion in space that witch is currently standing.
 		
 		if (_enumType == Type.bomb) {
             BombEffect();

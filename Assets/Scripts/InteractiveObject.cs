@@ -25,7 +25,6 @@ public abstract class InteractiveObject {
     public InteractiveObject(string name) {
         _name = name;
         uiSprite = Resources.Load<Sprite>("Items/ui" + _name);
-        Debug.Log(uiSprite);
     }
 
     /// <summary>
