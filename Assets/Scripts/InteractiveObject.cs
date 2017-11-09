@@ -24,7 +24,7 @@ public abstract class InteractiveObject {
     /// <param name="name"></param>
     public InteractiveObject(string name) {
         _name = name;
-        uiSprite = Resources.Load<Sprite>("Items/ui" + _name);
+        uiSprite = Resources.Load<GameObject>("Items/ui" + _name).GetComponent<SpriteRenderer>().sprite;
     }
 
     /// <summary>
