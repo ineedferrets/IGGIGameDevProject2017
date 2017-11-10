@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MatchManager : MonoBehaviour {
 
@@ -18,6 +19,11 @@ public class MatchManager : MonoBehaviour {
         {
             winText.text = "Game Over! Player 1 wins!";
             winText.enabled = true;
+        }
+
+        if (Input.GetKeyDown("r"))
+        {
+            SceneManager.LoadScene("Main");
         }
     }
 }
