@@ -66,15 +66,22 @@ public class MapGenerator : MonoBehaviour {
 		}
 		
 		// Spawning Cauldrons
-		Vector3 Cauldron1 = new Vector3(1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2);
-		Vector3 Cauldron2 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2);
-		Vector3 Cauldron3 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, 1.5f - mapSize.y/2);
-		Vector3 Cauldron4 = new Vector3(1.5f - mapSize.x/2, 1.5f - mapSize.y/2);
-		List<Vector3> cauldronVector = new List<Vector3>() {Cauldron1, Cauldron2, Cauldron3, Cauldron4};
+		Vector3 Cauldron1 = new Vector3(1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2, -3);
+		//Vector3 Cauldron2 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2, -3);
+		Vector3 Cauldron3 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, 1.5f - mapSize.y/2, -3);
+		//Vector3 Cauldron4 = new Vector3(1.5f - mapSize.x/2, 1.5f - mapSize.y/2, -3);
+		List<Vector3> cauldronVector = new List<Vector3>() {Cauldron1, Cauldron3};
 		for (int i = 0;  i < cauldronVector.Count; i++ ){
 			GameObject tempObj = Instantiate(Resources.Load<GameObject>("Prefabs/Cauldron"), cauldronVector[i], Quaternion.identity);
 			tempObj.transform.parent = mapHolder;
 			tempObj.name = "Cauldron" + (i+1);
+<<<<<<< HEAD
+=======
+            GameObject tempPlayer = GameObject.Find("player" + (i+1));
+            Debug.Log(tempPlayer);
+            tempPlayer.GetComponent<PlayerController>().playerCauldron = tempObj.GetComponent<CauldronController>();
+            tempObj.GetComponent<CauldronController>().player = tempPlayer.GetComponent<PlayerController>();
+>>>>>>> 28dc70e595942bb4e8c285c012fc3341e514c2a9
 		}
 
 		// Spawning Obstacles 

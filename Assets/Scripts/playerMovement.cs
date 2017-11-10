@@ -45,19 +45,19 @@ public class playerMovement : MonoBehaviour {
 		Vector3 movement = new Vector3(hori * speed, vert * speed, 0);
 		transform.Translate(movement * Time.deltaTime);
 		if (transform.position.x >= boundX) {
-			Vector3 temp = new Vector3(boundX, transform.position.y, 0);
+			Vector3 temp = new Vector3(boundX, transform.position.y, -3);
 			transform.position = temp;
 		}
 		if (transform.position.x <= -boundX) {
-			Vector3 temp = new Vector3(-boundX, transform.position.y, 0);
+			Vector3 temp = new Vector3(-boundX, transform.position.y, -3);
 			transform.position = temp;
 		}
 		if (transform.position.y >= boundY) {
-			Vector3 temp = new Vector3(transform.position.x, boundY, 0);
+			Vector3 temp = new Vector3(transform.position.x, boundY, -3);
 			transform.position = temp;
 		}
 		if (transform.position.y <= -boundY) {
-			Vector3 temp = new Vector3(transform.position.x, -boundY, 0);
+			Vector3 temp = new Vector3(transform.position.x, -boundY, -3);
 			transform.position = temp;
 		}
 		

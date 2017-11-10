@@ -72,32 +72,39 @@ public class PlayerController : MonoBehaviour {
 
     // On trigger stay (used instead of enter since buttons are also checked).
     void OnTriggerStay(Collider other) {
-        // Check to see if collided with cauldron.
-        CauldronController cauldron = other.GetComponent<CauldronController>();
-        bool cauldronCollision = false;
-        if (cauldron != null)
+        if (other.isTrigger)
         {
-            cauldronCollision = CauldronCheckAndRun(cauldron);
-        }
+            // Check to see if collided with cauldron.
+            CauldronController cauldron = other.GetComponent<CauldronController>();
+            bool cauldronCollision = false;
+            if (cauldron != null)
+            {
+                cauldronCollision = CauldronCheckAndRun(cauldron);
+            }
 
-        // Check to see if collided with ingredient
-        IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
-        bool ingredientCollision = ingredient != false;
-        if (!cauldronCollision && ingredientCollision) {
-            if (ingredientCollision && IngredientCheckAndRun(ingredient)) {
-                Destroy(other.gameObject);
+            Debug.Log("Colliding with my cauldron: " + cauldronCollision);
+
+            // Check to see if collided with ingredient
+            IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
+            bool ingredientCollision = ingredient != null;
+            if (!cauldronCollision && ingredientCollision)
+            {
+                IngredientCheckAndRun(ingredient);
+            }
+
+            Debug.Log("Colliding with ingredient: " + ingredientCollision);
+
+            collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
+
+            // EXPLOSION
+            if (other.gameObject.tag == "Explosion" && playerExploded == false)
+            {
+                print("Oh dear i'm dead");
+                playerExploded = true;
+                PlayerDeath();
+                playerExploded = false;
             }
         }
-
-        collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
-
-		// EXPLOSION
-		if (other.gameObject.tag == "Explosion" && playerExploded == false) {
-			print("Oh dear i'm dead");
-			playerExploded = true;
-            PlayerDeath();
-            playerExploded = false;
-		}
     }
 
     private void PlayerDeath() {
@@ -108,7 +115,7 @@ public class PlayerController : MonoBehaviour {
     /// Function for checking if the CauldronCrafting component is null and assumes a none null value means a cauldron.
     /// </summary>
     /// <param name="cauldron">CauldronCrafting component of cauldron.</param>
-    /// <returns>Returns whether the CauldronCrafting component is not null.</returns>
+    /// <returns>Returns whether the CauldronCrafting component is owned by the player.</returns>
     private bool CauldronCheckAndRun(CauldronController cauldron) {
         // Does the collided object contain a CauldronCrafting component? I.e. is it a cauldron.
         if (cauldron == playerCauldron) {
@@ -146,12 +153,16 @@ public class PlayerController : MonoBehaviour {
             {
                 // Pick up ingredient.
                 case true:
+                    Debug.Log("Slot is empty");
                     _leftInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     return true;
                 // Swap ingredient with inventory slot.
                 case false:
+                    Debug.Log("Slot is not empty");
                     InteractiveObject intermediary = _leftInventorySlot;
                     _leftInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     intermediary.SpawnObject(transform.position);
                     return true;
             }
@@ -162,11 +173,13 @@ public class PlayerController : MonoBehaviour {
                 // Pick up ingredient.
                 case true:
                     _upInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     return true;
                 // Swap ingredient with inventory slot.
                 case false:
                     InteractiveObject intermediary = _upInventorySlot;
                     _upInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     intermediary.SpawnObject(transform.position);
                     return true;
             }
@@ -177,11 +190,13 @@ public class PlayerController : MonoBehaviour {
                 // Pick up ingredient.
                 case true:
                     _rightInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     return true;
                 // Swap ingredient with inventory slot.
                 case false:
                     InteractiveObject intermediary = _rightInventorySlot;
                     _rightInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     intermediary.SpawnObject(transform.position);
                     return true;
             }
@@ -192,11 +207,13 @@ public class PlayerController : MonoBehaviour {
                 // Pick up ingredient.
                 case true:
                     _downInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     return true;
                 // Swap ingredient with inventory slot.
                 case false:
                     InteractiveObject intermediary = _downInventorySlot;
                     _downInventorySlot = ingredient.mIngredient;
+                    Destroy(ingredient.gameObject);
                     intermediary.SpawnObject(transform.position);
                     return true;
             }
