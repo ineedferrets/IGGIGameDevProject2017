@@ -76,7 +76,6 @@ public class MapGenerator : MonoBehaviour {
 			tempObj.transform.parent = mapHolder;
 			tempObj.name = "Cauldron" + (i+1);
             GameObject tempPlayer = GameObject.Find("player" + (i+1));
-            Debug.Log(tempPlayer);
             tempPlayer.GetComponent<PlayerController>().playerCauldron = tempObj.GetComponent<CauldronController>();
             tempObj.GetComponent<CauldronController>().player = tempPlayer.GetComponent<PlayerController>();
             tempObj.GetComponent<SpriteRenderer>().color = tempPlayer.GetComponent<SpriteRenderer>().color;
@@ -158,6 +157,7 @@ public class MapGenerator : MonoBehaviour {
 		return randomCoord;
 	}
 
+	// List instead of queue for open tiles, in order to achieve true randomisation
 	public Transform GetRandomOpenTile(){
 		Coord randomCoord = shuffledOpenTileCoords[Random.Range(0, shuffledOpenTileCoords.Count)];
 		return tileMap[randomCoord.x, randomCoord.y];
