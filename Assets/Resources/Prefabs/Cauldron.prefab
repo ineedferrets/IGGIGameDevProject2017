@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212995098003609906}
   - component: {fileID: 95921384622100564}
   - component: {fileID: 65782807652276560}
+  - component: {fileID: 114311265772479760}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -63,7 +64,7 @@ Animator:
   m_GameObject: {fileID: 1180261001887270}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c17421194f1a2ae4e8de6910144e4dbd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 54890322a32e6be498c6f3c8528e6f5a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -71,6 +72,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114311265772479760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180261001887270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c81eb132a3939f4683430e777832a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  player: {fileID: 0}
 --- !u!212 &212995098003609906
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,7 +119,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: d156989a703982c47be6a52421152c4d, type: 3}
+  m_Sprite: {fileID: 21300008, guid: 77e059056ef17014cbeb88445050d331, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

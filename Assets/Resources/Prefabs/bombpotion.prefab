@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4645701740330960}
   - component: {fileID: 212261795827230158}
   - component: {fileID: 95046719628527904}
-  - component: {fileID: 114571234064135288}
+  - component: {fileID: 114201115718922818}
   m_Layer: 0
   m_Name: bombpotion
   m_TagString: Untagged
@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 1358007847242704}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 424be92cf363f3447b76329e1883bb90, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8cedb40be21104a4588f756b0fd5e57d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114571234064135288
+--- !u!114 &114201115718922818
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,11 +67,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1358007847242704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883237ea070eef14cb883f3d9fd53b12, type: 3}
+  m_Script: {fileID: 11500000, guid: d8ab73c8bce395e4ea25731e164494e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 4678908949958088, guid: 5fa932f18d0aa234f86ccc21adc1baac,
+  explosionPrefab: {fileID: 4678908949958088, guid: 156f20cdf2e102d46a94589ec0c7c3a8,
     type: 2}
+  timeDelay: 3
 --- !u!212 &212261795827230158
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -106,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: d156989a703982c47be6a52421152c4d, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 77e059056ef17014cbeb88445050d331, type: 3}
   m_Color: {r: 1, g: 0.8111562, b: 0.022058845, a: 1}
   m_FlipX: 0
   m_FlipY: 0
