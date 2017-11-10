@@ -21,6 +21,7 @@ public class MapGenerator : MonoBehaviour {
 	List<Coord> allTileCoords; 
 	Queue<Coord> shuffledTileCoords; 
 	List<Coord> shuffledOpenTileCoords;
+	List<Coord> cauldronCoords;
 	Transform[,] tileMap;
 
 	// The seed used for obstacle generation - can be set on start of each runtime/level 
@@ -31,6 +32,7 @@ public class MapGenerator : MonoBehaviour {
 		GenerateMap(); 	
 	}
 
+	// Primary Map Generation Method
 	public void GenerateMap(){
 		tileMap = new Transform[(int)mapSize.x, (int)mapSize.y];
 
@@ -42,6 +44,7 @@ public class MapGenerator : MonoBehaviour {
 			}
 		}
 		shuffledTileCoords = new Queue<Coord>(Utility.ShuffleArray(allTileCoords.ToArray (), seed));
+		// Calculate the center of the map
 		mapCenter = new Coord((int)mapSize.x/2, (int)mapSize.y/2);
 
 		string holderName = "Generated Map";
@@ -60,6 +63,17 @@ public class MapGenerator : MonoBehaviour {
 				newTile.parent = mapHolder;
 				tileMap[x,y] = newTile;
 			}
+		}
+		
+		// Spawning Cauldrons
+		Vector3 Cauldron1 = new Vector3(1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2);
+		Vector3 Cauldron2 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, mapSize.y - 1.5f - mapSize.y/2);
+		Vector3 Cauldron3 = new Vector3(mapSize.x - 1.5f - mapSize.x/2, 1.5f - mapSize.y/2);
+		Vector3 Cauldron4 = new Vector3(1.5f - mapSize.x/2, 1.5f - mapSize.y/2);
+		List<Vector3> cauldronVector = new List<Vector3>() {Cauldron1, Cauldron2, Cauldron3, Cauldron4};
+		for (int i = 0;  i < cauldronVector.Count; i++ ){
+			GameObject tempObj = Instantiate(Resources.Load<GameObject>("Prefabs/Cauldron"), cauldronVector[i], Quaternion.identity);
+			tempObj.name = "Cauldron" + (i+1);
 		}
 
 		// Spawning Obstacles 
@@ -91,8 +105,6 @@ public class MapGenerator : MonoBehaviour {
 		shuffledOpenTileCoords = new List<Coord>(Utility.ShuffleArray(allOpenCoords.ToArray(), seed));
 
 	}
-
-
 
 	// Ensure that no tile is unreachable at the start of the game
 	bool MapIsFullyAccessible(bool[,] obstacleMap, int currentObstacleCount){

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4891675679678682}
   - component: {fileID: 212099981186759984}
   - component: {fileID: 95303973268793856}
-  - component: {fileID: 114187834868613780}
+  - component: {fileID: 114313567259620290}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 1092663589668070}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f9b86b9ec4bdf304a9d71382850941ec, type: 2}
+  m_Controller: {fileID: 9100000, guid: 91e743bb89d394502b1cccd439472c0f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114187834868613780
+--- !u!114 &114313567259620290
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,10 +67,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092663589668070}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c81eb132a3939f4683430e777832a3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 674e0b0aac29b4d14b5b77c71bc4eac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 0
+  maxHealth: 100
 --- !u!212 &212099981186759984
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 77e059056ef17014cbeb88445050d331, type: 3}
+  m_Sprite: {fileID: 21300008, guid: ba482be87e35344a5a997262aaed3f1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
