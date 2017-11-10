@@ -82,10 +82,9 @@ public class PlayerController : MonoBehaviour {
 
         // Check to see if collided with ingredient
         IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
-        bool ingredientCollision = false;
-        if (!cauldronCollision) {
-            ingredientCollision = ingredient != null;
-            if (IngredientCheckAndRun(ingredient)) {
+        bool ingredientCollision = ingredient != false;
+        if (!cauldronCollision && ingredientCollision) {
+            if (ingredientCollision && IngredientCheckAndRun(ingredient)) {
                 Destroy(other.gameObject);
             }
         }

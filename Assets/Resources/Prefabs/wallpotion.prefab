@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4130916594507442}
   - component: {fileID: 212403345274510162}
-  - component: {fileID: 95761080767341718}
-  - component: {fileID: 114410590112221734}
+  - component: {fileID: 95590573944849750}
+  - component: {fileID: 114706969517284768}
   m_Layer: 0
   m_Name: wallpotion
   m_TagString: Untagged
@@ -42,7 +42,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &95761080767341718
+--- !u!95 &95590573944849750
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -51,7 +51,7 @@ Animator:
   m_GameObject: {fileID: 1327153267293942}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6e4e85f22f91b79499735d587fa26054, type: 2}
+  m_Controller: {fileID: 9100000, guid: 8cedb40be21104a4588f756b0fd5e57d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -59,7 +59,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114410590112221734
+--- !u!114 &114706969517284768
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -67,10 +67,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1327153267293942}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 883237ea070eef14cb883f3d9fd53b12, type: 3}
+  m_Script: {fileID: 11500000, guid: d8ab73c8bce395e4ea25731e164494e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 4715863709572370, guid: ceba2bdce0a043248b4069d2eadea09e,
+  explosionPrefab: {fileID: 4715863709572370, guid: c3b447ee329991049ac1ebfab878380d,
     type: 2}
   timeDelay: 1
 --- !u!212 &212403345274510162
@@ -107,7 +107,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300022, guid: d156989a703982c47be6a52421152c4d, type: 3}
+  m_Sprite: {fileID: 21300022, guid: 77e059056ef17014cbeb88445050d331, type: 3}
   m_Color: {r: 0.16435985, g: 0.6985294, b: 0.23435456, a: 1}
   m_FlipX: 0
   m_FlipY: 0

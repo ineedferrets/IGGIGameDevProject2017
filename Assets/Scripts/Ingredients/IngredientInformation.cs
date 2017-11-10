@@ -17,7 +17,7 @@ public class IngredientInformation : MonoBehaviour {
     /// <summary>
     /// On scene start.
     /// </summary>
-    private void Awake() {
+    private void Start() {
         mIngredient = new Ingredient(IngredientType);
     }
 }
