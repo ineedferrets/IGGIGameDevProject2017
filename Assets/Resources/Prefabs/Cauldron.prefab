@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4092344011920450}
-  - component: {fileID: 212682516653766672}
-  - component: {fileID: 95996439712601644}
-  - component: {fileID: 65199317595519816}
+  - component: {fileID: 212995098003609906}
+  - component: {fileID: 95921384622100564}
+  - component: {fileID: 65782807652276560}
   m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
@@ -36,13 +36,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1180261001887270}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: -10.26, y: 0.23, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &65199317595519816
+--- !u!65 &65782807652276560
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.24, y: 0.24, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &95996439712601644
+--- !u!95 &95921384622100564
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -63,7 +63,7 @@ Animator:
   m_GameObject: {fileID: 1180261001887270}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 54890322a32e6be498c6f3c8528e6f5a, type: 2}
+  m_Controller: {fileID: 9100000, guid: c17421194f1a2ae4e8de6910144e4dbd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -71,7 +71,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!212 &212682516653766672
+--- !u!212 &212995098003609906
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300008, guid: 77e059056ef17014cbeb88445050d331, type: 3}
+  m_Sprite: {fileID: 21300008, guid: d156989a703982c47be6a52421152c4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
