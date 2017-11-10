@@ -80,7 +80,6 @@ public class PlayerController : MonoBehaviour {
             cauldronCollision = CauldronCheckAndRun(cauldron);
         }
 
-        Debug.Log("Colliding with cauldron: " + cauldronCollision);
         // Check to see if collided with ingredient
         IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
         bool ingredientCollision = false;
@@ -90,17 +89,20 @@ public class PlayerController : MonoBehaviour {
                 Destroy(other.gameObject);
             }
         }
-        Debug.Log("Colliding with ingredient: " + ingredientCollision);
 
         collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
 
-        Debug.Log("Colliding with cauldron or ingredient: " + collidingWithInteractiveObject);
 		// EXPLOSION
 		if (other.gameObject.tag == "Explosion" && playerExploded == false) {
 			print("Oh dear i'm dead");
 			playerExploded = true;
-			// TODO: make player die and respawn at cauldron
+            PlayerDeath();
+            playerExploded = false;
 		}
+    }
+
+    private void PlayerDeath() {
+        transform.position = playerCauldron.transform.position + new Vector3(0f, 0f, -0.2f);
     }
 
     /// <summary>

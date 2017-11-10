@@ -19,6 +19,8 @@ public class CauldronController : MonoBehaviour, IDestructable {
     /// </summary>
     public List<Ingredient> ingredientQueue;
 
+    public PlayerController player;
+
     private List<Potion> craftablePotions;
 
     /// <summary>
@@ -32,6 +34,13 @@ public class CauldronController : MonoBehaviour, IDestructable {
         foreach (Potion.Type potType in Enum.GetValues(typeof(Potion.Type)))
         {
             craftablePotions.Add(new Potion(potType));
+        }
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Explosion") {
+            Destroy(player.gameObject);
+            Destroy(gameObject);
         }
     }
 
