@@ -10,9 +10,14 @@ public class MatchManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (allPlayers.Count == 1) {
-            winText.text = "Game Over! " + allPlayers[0].name + " wins!";
+		if (allPlayers[0] == null) {
+            winText.text = "Game Over! Player 2 wins!";
             winText.enabled = true;
         }
-	}
+        else if (allPlayers[1] == null)
+        {
+            winText.text = "Game Over! Player 1 wins!";
+            winText.enabled = true;
+        }
+    }
 }

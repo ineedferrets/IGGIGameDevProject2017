@@ -79,6 +79,7 @@ public class MapGenerator : MonoBehaviour {
             Debug.Log(tempPlayer);
             tempPlayer.GetComponent<PlayerController>().playerCauldron = tempObj.GetComponent<CauldronController>();
             tempObj.GetComponent<CauldronController>().player = tempPlayer.GetComponent<PlayerController>();
+            tempObj.GetComponent<SpriteRenderer>().color = tempPlayer.GetComponent<SpriteRenderer>().color;
 		}
 
 		// Spawning Obstacles 
