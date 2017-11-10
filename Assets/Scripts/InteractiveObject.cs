@@ -8,10 +8,10 @@ using UnityEngine;
 public abstract class InteractiveObject {
 
     // Object name is publicly accessible but privately assigned.
-    private string _name;
-    public string name {
+    private string _itemID;
+    public string itemID {
         get {
-            return _name;
+            return _itemID;
         }
     }
 
@@ -22,9 +22,9 @@ public abstract class InteractiveObject {
     /// Constructer.
     /// </summary>
     /// <param name="name"></param>
-    public InteractiveObject(string name) {
-        _name = name;
-        uiSprite = Resources.Load<GameObject>("Items/ui" + _name).GetComponent<SpriteRenderer>().sprite;
+    public InteractiveObject(string id) {
+        _itemID = id;
+        uiSprite = Resources.Load<GameObject>("Items/ui" + _itemID).GetComponent<SpriteRenderer>().sprite;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public abstract class InteractiveObject {
     /// </summary>
     /// <param name="position"></param>
     /// <returns>Whether instantiation was successful.</returns>
-    public bool SpawnObject(Vector3 position) {
-        return GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + name), position, Quaternion.identity, GameObject.Find("Map").transform) != null;
+    public GameObject SpawnObject(Vector3 position) {
+        return GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + _itemID), position, Quaternion.identity, GameObject.Find("Map").transform);
     }
 }

@@ -5,25 +5,20 @@ using UnityEngine;
 
 public class IngredientInformation : MonoBehaviour {
 
-    // Item Ingredient Type is set in editor.
     [SerializeField]
-    private Ingredient.Type _itemIngredient;
-    public Ingredient.Type itemIngredient {
-        get {
-            return _itemIngredient;
-        }
-    }
+    private Ingredient.Type IngredientType;
+    public Ingredient.Type ingredientType { get { return IngredientType; } }
 
     /// <summary>
     /// The ingredient object holding.
     /// </summary>
-    public Ingredient mIngredient { get; private set; }
+    public Ingredient mIngredient;
 
     /// <summary>
     /// On scene start.
     /// </summary>
     private void Awake() {
-        mIngredient = new Ingredient(_itemIngredient);
+        mIngredient = new Ingredient(IngredientType);
     }
 }
 
@@ -31,22 +26,17 @@ public class IngredientInformation : MonoBehaviour {
 /// Ingredient class inherits from interactive object. Contains all possible ingredient types.
 /// </summary>
 public class Ingredient : InteractiveObject {
-    /// <summary>
-    /// Enum type of ingredient.
-    /// </summary>
+
     public enum Type { red, blue };
 
-    // Publicly accessible ingredient type. Privately assigned.
-    private Type _enumType;
-    public Type enumType {
-        get {
-            return _enumType;
-        }
-    }
-
+    private Type _ingType;
+    public Type ingType { get { return _ingType; } }
+    
     /// <summary>
     /// Constructor.
     /// </summary>
     /// <param name="ingredientType"></param>
-    public Ingredient(Type ingredientType) : base(ingredientType.ToString()+"ingredient") { _enumType = ingredientType; }
+    public Ingredient(Type ingredientType) : base(ingredientType.ToString() +"ingredient") {
+        _ingType = ingredientType;
+    }
 }

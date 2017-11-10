@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 
     // Check if player is pressing a button and drop object if so.
     void Update() {
+        Debug.Log(collidingWithInteractiveObject);
 
         if (!collidingWithInteractiveObject) {
             if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
@@ -76,18 +77,21 @@ public class PlayerController : MonoBehaviour {
         CauldronController cauldron = other.GetComponent<CauldronController>();
         bool cauldronCollision = CauldronCheckAndRun(cauldron);
 
+        Debug.Log("Colliding with cauldron: " + cauldronCollision);
         // Check to see if collided with ingredient
         IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
         bool ingredientCollision = false;
         if (!cauldronCollision) {
-            ingredientCollision = IngredientCheckAndRun(ingredient);
-            if (ingredientCollision) {
+            ingredientCollision = ingredient != null;
+            if (IngredientCheckAndRun(ingredient)) {
                 Destroy(other.gameObject);
             }
         }
+        Debug.Log("Colliding with ingredient: " + ingredientCollision);
 
         collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
 
+        Debug.Log("Colliding with cauldron or ingredient: " + collidingWithInteractiveObject);
 		// EXPLOSION
 		if (other.gameObject.tag == "Explosion" && playerExploded == false) {
 			print("Oh dear i'm dead");

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class CauldronController : MonoBehaviour, IDestructable {
@@ -18,12 +19,20 @@ public class CauldronController : MonoBehaviour, IDestructable {
     /// </summary>
     public List<Ingredient> ingredientQueue;
 
+    private List<Potion> craftablePotions;
+
     /// <summary>
     /// Initialisation by setting queue and the relative player
     /// </summary>
     void Start() {
         _health = maxHealth;
         ingredientQueue = new List<Ingredient>(2);
+
+        craftablePotions = new List<Potion>();
+        foreach (Potion.Type potType in Enum.GetValues(typeof(Potion.Type)))
+        {
+            craftablePotions.Add(new Potion(potType));
+        }
     }
 
     /// <summary>
@@ -61,14 +70,30 @@ public class CauldronController : MonoBehaviour, IDestructable {
     private InteractiveObject RecipeCheck() {
         // Has cauldron got two ingredients?
         if (ingredientQueue.Count == 2) {
-            Potion returnPotion;
-            if (ingredientQueue[0].enumType != ingredientQueue[1].enumType) {
-                returnPotion = new Potion(Potion.Type.wall);
-            } else {
-                returnPotion = new Potion(Potion.Type.bomb);
+            InteractiveObject returnObject = null;
+
+            string craftingID = "";
+            for (int i = 0; i < ingredientQueue.Count; i++) {
+                craftingID += ingredientQueue[i].itemID;
+                if (i != ingredientQueue.Count - 1) {
+                    craftingID += " ";
+                }
             }
-            ingredientQueue.Clear();
-            return returnPotion;
+
+            foreach (Potion potion in craftablePotions) {
+                if (potion.craftingIDs.Contains(craftingID)) {
+                    returnObject = potion;
+                    ingredientQueue.Clear();
+                    break;
+                }
+            }
+
+            if (returnObject == null) {
+                returnObject = ingredientQueue[ingredientQueue.Count - 1];
+                ingredientQueue.Remove(returnObject as Ingredient);
+            }
+
+            return returnObject;
         } else {
             // Return a null.
             return null;
@@ -85,38 +110,5 @@ public class CauldronController : MonoBehaviour, IDestructable {
         } else {
             return false;
         }
-    }
-}
-
-/// <summary>
-/// Static class containing all recipes.
-/// </summary>
-public static class Recipes
-{
-    /// <summary>
-    /// Dictionary that maps ingredient combinations to a potion.
-    /// </summary>
-    public static Dictionary<IngredientCombination, Potion> IngredientToPotion
-        = new Dictionary<IngredientCombination, Potion>() {
-            // 2 x Same Colour = Bomb
-            { new IngredientCombination(Ingredient.Type.red, Ingredient.Type.red), new Potion(Potion.Type.bomb) },
-            { new IngredientCombination(Ingredient.Type.blue, Ingredient.Type.blue), new Potion(Potion.Type.bomb) },
-
-            // Different colours = wall
-            { new IngredientCombination(Ingredient.Type.red, Ingredient.Type.blue), new Potion(Potion.Type.wall) },
-            { new IngredientCombination(Ingredient.Type.blue, Ingredient.Type.red), new Potion(Potion.Type.wall) }
-        };
-}
-
-/// <summary>
-/// Wrapper that contains two ingredients.
-/// </summary>
-public class IngredientCombination {
-    public Ingredient.Type mIngredient1;
-    public Ingredient.Type mIngredient2;
-
-    public IngredientCombination (Ingredient.Type ingredient1, Ingredient.Type ingredient2) {
-        mIngredient1 = ingredient1;
-        mIngredient2 = ingredient2;
     }
 }

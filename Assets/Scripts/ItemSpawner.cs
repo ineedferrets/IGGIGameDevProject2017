@@ -58,8 +58,8 @@ public class ItemSpawner : MonoBehaviour {
 
 	void SetUpIngredients() {
 		ingredients = new List<Ingredient>();
-		ingredients.Add(new Ingredient(Ingredient.Type.red));
 		ingredients.Add(new Ingredient(Ingredient.Type.blue));
+		ingredients.Add(new Ingredient(Ingredient.Type.red));
 	}
 
 	[System.Serializable]
