@@ -52,8 +52,6 @@ public class PlayerController : MonoBehaviour {
 
     // Check if player is pressing a button and drop object if so.
     void Update() {
-        Debug.Log(collidingWithInteractiveObject);
-
         if (!collidingWithInteractiveObject) {
             if(Input.GetButtonDown("LeftFace" + _mPlayerNumber) && _leftInventorySlot != null) {
                 _leftInventorySlot.SpawnObject(transform.position);
@@ -69,6 +67,7 @@ public class PlayerController : MonoBehaviour {
                 _downInventorySlot = null;
             }
         }
+        collidingWithInteractiveObject = false;
     }
 
     // On trigger stay (used instead of enter since buttons are also checked).

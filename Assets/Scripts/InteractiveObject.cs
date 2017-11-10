@@ -17,6 +17,7 @@ public abstract class InteractiveObject {
 
     // Public sprite for UI.
     public Sprite uiSprite;
+    public Color uiSpriteColor;
 
     /// <summary>
     /// Constructer.
@@ -24,7 +25,9 @@ public abstract class InteractiveObject {
     /// <param name="name"></param>
     public InteractiveObject(string id) {
         _itemID = id;
-        uiSprite = Resources.Load<GameObject>("Items/ui" + _itemID).GetComponent<SpriteRenderer>().sprite;
+        SpriteRenderer renderer = Resources.Load<GameObject>("Items/ui" + _itemID).GetComponent<SpriteRenderer>();
+        uiSprite = renderer.sprite;
+        uiSpriteColor = renderer.color;
     }
 
     /// <summary>

@@ -16,6 +16,7 @@ public class UIPlayerInformation : MonoBehaviour {
 	void Update () {
         if (player.leftInventorySlot != null) {
             leftButton.sprite = player.leftInventorySlot.uiSprite;
+            leftButton.color = player.leftInventorySlot.uiSpriteColor;
             leftButton.enabled = true;
         } else {
             leftButton.sprite = null;
@@ -24,6 +25,7 @@ public class UIPlayerInformation : MonoBehaviour {
 
         if (player.upInventorySlot != null) {
             upButton.sprite = player.upInventorySlot.uiSprite;
+            upButton.color = player.upInventorySlot.uiSpriteColor;
             upButton.enabled = true;
         } else {
             upButton.sprite = null;
@@ -33,6 +35,7 @@ public class UIPlayerInformation : MonoBehaviour {
 
         if (player.rightInventorySlot != null) {
             rightButton.sprite = player.rightInventorySlot.uiSprite;
+            rightButton.color = player.rightInventorySlot.uiSpriteColor;
             rightButton.enabled = true;
         } else {
             rightButton.sprite = null;
@@ -42,6 +45,7 @@ public class UIPlayerInformation : MonoBehaviour {
 
         if (player.downInventorySlot != null) {
             downButton.sprite = player.downInventorySlot.uiSprite;
+            downButton.color = player.downInventorySlot.uiSpriteColor;
             downButton.enabled = true;
         } else {
             downButton.sprite = null;
