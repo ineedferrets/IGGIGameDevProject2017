@@ -75,10 +75,13 @@ public class MapGenerator : MonoBehaviour {
 			GameObject tempObj = Instantiate(Resources.Load<GameObject>("Prefabs/Cauldron"), cauldronVector[i], Quaternion.identity);
 			tempObj.transform.parent = mapHolder;
 			tempObj.name = "Cauldron" + (i+1);
+<<<<<<< HEAD
+=======
             GameObject tempPlayer = GameObject.Find("player" + (i+1));
             Debug.Log(tempPlayer);
             tempPlayer.GetComponent<PlayerController>().playerCauldron = tempObj.GetComponent<CauldronController>();
             tempObj.GetComponent<CauldronController>().player = tempPlayer.GetComponent<PlayerController>();
+>>>>>>> 28dc70e595942bb4e8c285c012fc3341e514c2a9
 		}
 
 		// Spawning Obstacles 
@@ -150,6 +153,7 @@ public class MapGenerator : MonoBehaviour {
 		return new Vector3(-mapSize.x/2 + 0.5f + x, -mapSize.y/2 + 0.5f + y, 0) * tileSize;
 	}
 
+	// We use queues to the nature of a fisher yates shuffle, for obstacles
 	public Coord GetRandomCoord() {
 		Coord randomCoord = shuffledTileCoords.Dequeue ();
 		shuffledTileCoords.Enqueue (randomCoord);
@@ -180,6 +184,7 @@ public class MapGenerator : MonoBehaviour {
 		}
 	}
 	
+	// Methods to grab X/Y lengths
 	public float getX() {
 		return mapSize.x;
 	}
