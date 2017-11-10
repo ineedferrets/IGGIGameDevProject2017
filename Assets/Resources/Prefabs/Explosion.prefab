@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb474f63b4893b34f8819689b396b388, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delay: 3
+  Delay: 1
 --- !u!198 &198387985119499540
 ParticleSystem:
   m_ObjectHideFlags: 1
