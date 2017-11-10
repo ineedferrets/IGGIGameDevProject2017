@@ -75,13 +75,10 @@ public class MapGenerator : MonoBehaviour {
 			GameObject tempObj = Instantiate(Resources.Load<GameObject>("Prefabs/Cauldron"), cauldronVector[i], Quaternion.identity);
 			tempObj.transform.parent = mapHolder;
 			tempObj.name = "Cauldron" + (i+1);
-<<<<<<< HEAD
-=======
             GameObject tempPlayer = GameObject.Find("player" + (i+1));
             Debug.Log(tempPlayer);
             tempPlayer.GetComponent<PlayerController>().playerCauldron = tempObj.GetComponent<CauldronController>();
             tempObj.GetComponent<CauldronController>().player = tempPlayer.GetComponent<PlayerController>();
->>>>>>> 28dc70e595942bb4e8c285c012fc3341e514c2a9
 		}
 
 		// Spawning Obstacles 
