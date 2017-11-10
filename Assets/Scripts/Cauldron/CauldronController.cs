@@ -50,7 +50,7 @@ public class CauldronController : MonoBehaviour, IDestructable {
 
         // Add ingredient to recipe queue and check whether there are enough ingredients to make a potion.
         ingredientQueue.Add(ingredient);
-        Debug.Log(ingredientQueue[0] + " " + ingredientQueue[1]);
+        Debug.Log(ingredientQueue.Count);
         return RecipeCheck();
     }
 
@@ -60,9 +60,13 @@ public class CauldronController : MonoBehaviour, IDestructable {
     /// <returns>Potion that is made when ingredients are mixed. Returns null otherwise.</returns>
     private InteractiveObject RecipeCheck() {
         // Has cauldron got two ingredients?
-        if (ingredientQueue[0] != null && ingredientQueue[1] != null) {
-            // Return potion that is made by these two ingredients and clear cauldron.
-            Potion returnPotion = Recipes.IngredientToPotion[new IngredientCombination(ingredientQueue[0].enumType, ingredientQueue[1].enumType)];
+        if (ingredientQueue.Count == 2) {
+            Potion returnPotion;
+            if (ingredientQueue[0].enumType != ingredientQueue[1].enumType) {
+                returnPotion = new Potion(Potion.Type.wall);
+            } else {
+                returnPotion = new Potion(Potion.Type.bomb);
+            }
             ingredientQueue.Clear();
             return returnPotion;
         } else {
