@@ -36,4 +36,10 @@ public class Potion : InteractiveObject {
                 break;
         }
     }
+
+    public override GameObject SpawnObject(Vector3 position)
+    {
+        position += new Vector3(0, 3, 0);
+        return base.SpawnObject(position);
+    }
 }

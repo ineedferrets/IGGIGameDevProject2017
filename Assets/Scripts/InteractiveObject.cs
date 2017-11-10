@@ -35,7 +35,7 @@ public abstract class InteractiveObject {
     /// </summary>
     /// <param name="position"></param>
     /// <returns>Whether instantiation was successful.</returns>
-    public GameObject SpawnObject(Vector3 position) {
+    public virtual GameObject SpawnObject(Vector3 position) {
         return GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/" + _itemID), position, Quaternion.identity, GameObject.Find("Map").transform);
     }
 }

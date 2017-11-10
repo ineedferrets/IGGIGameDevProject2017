@@ -43,7 +43,7 @@ public class ItemSpawner : MonoBehaviour {
 			spawnTimer += Time.deltaTime;
 			yield return null;
 		}
-		ingredients[Random.Range(0, ingredients.Count)].SpawnObject(randomTile.position);
+		ingredients[Random.Range(0, ingredients.Count)].SpawnObject(randomTile.position + new Vector3(0,0,-3));
 	}
 
 	void NextWave(){

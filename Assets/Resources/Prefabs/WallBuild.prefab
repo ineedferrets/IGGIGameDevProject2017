@@ -38,8 +38,8 @@ GameObject:
   - component: {fileID: 4715863709572370}
   - component: {fileID: 33925151298474240}
   - component: {fileID: 65518549572925386}
-  - component: {fileID: 114215105297713712}
   - component: {fileID: 54615913122134724}
+  - component: {fileID: 114734488918522764}
   m_Layer: 0
   m_Name: WallBuild
   m_TagString: Build
@@ -108,7 +108,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.5, z: 0.5}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114215105297713712
+--- !u!114 &114734488918522764
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -116,10 +116,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783813783297432}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb474f63b4893b34f8819689b396b388, type: 3}
+  m_Script: {fileID: 11500000, guid: e1ec2c984d2cb3945a88ba4d25e12e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Delay: 1
+  obstaclePrefab: {fileID: 4935190411158750, guid: 94be77baa7edb421aab9db7f544ef91a,
+    type: 2}
 --- !u!198 &198548868209752390
 ParticleSystem:
   m_ObjectHideFlags: 1

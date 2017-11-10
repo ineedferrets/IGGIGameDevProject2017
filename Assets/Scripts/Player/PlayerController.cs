@@ -72,34 +72,39 @@ public class PlayerController : MonoBehaviour {
 
     // On trigger stay (used instead of enter since buttons are also checked).
     void OnTriggerStay(Collider other) {
-        // Check to see if collided with cauldron.
-        CauldronController cauldron = other.GetComponent<CauldronController>();
-        bool cauldronCollision = false;
-        if (cauldron != null)
+        if (other.isTrigger)
         {
-            cauldronCollision = CauldronCheckAndRun(cauldron);
+            // Check to see if collided with cauldron.
+            CauldronController cauldron = other.GetComponent<CauldronController>();
+            bool cauldronCollision = false;
+            if (cauldron != null)
+            {
+                cauldronCollision = CauldronCheckAndRun(cauldron);
+            }
+
+            Debug.Log("Colliding with my cauldron: " + cauldronCollision);
+
+            // Check to see if collided with ingredient
+            IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
+            bool ingredientCollision = ingredient != null;
+            if (!cauldronCollision && ingredientCollision)
+            {
+                IngredientCheckAndRun(ingredient);
+            }
+
+            Debug.Log("Colliding with ingredient: " + ingredientCollision);
+
+            collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
+
+            // EXPLOSION
+            if (other.gameObject.tag == "Explosion" && playerExploded == false)
+            {
+                print("Oh dear i'm dead");
+                playerExploded = true;
+                PlayerDeath();
+                playerExploded = false;
+            }
         }
-
-        Debug.Log("Colliding with my cauldron: " + cauldronCollision);
-
-        // Check to see if collided with ingredient
-        IngredientInformation ingredient = other.GetComponent<IngredientInformation>();
-        bool ingredientCollision = ingredient != false;
-        if (!cauldronCollision && ingredientCollision) {
-            IngredientCheckAndRun(ingredient);
-        }
-
-        Debug.Log("Colliding with ingredient: " + ingredientCollision);
-
-        collidingWithInteractiveObject = cauldronCollision || ingredientCollision;
-
-		// EXPLOSION
-		if (other.gameObject.tag == "Explosion" && playerExploded == false) {
-			print("Oh dear i'm dead");
-			playerExploded = true;
-            PlayerDeath();
-            playerExploded = false;
-		}
     }
 
     private void PlayerDeath() {
