@@ -74,7 +74,11 @@ public class PlayerController : MonoBehaviour {
     void OnTriggerStay(Collider other) {
         // Check to see if collided with cauldron.
         CauldronController cauldron = other.GetComponent<CauldronController>();
-        bool cauldronCollision = CauldronCheckAndRun(cauldron);
+        bool cauldronCollision = false;
+        if (cauldron != null)
+        {
+            cauldronCollision = CauldronCheckAndRun(cauldron);
+        }
 
         Debug.Log("Colliding with cauldron: " + cauldronCollision);
         // Check to see if collided with ingredient
@@ -106,7 +110,7 @@ public class PlayerController : MonoBehaviour {
     /// <returns>Returns whether the CauldronCrafting component is not null.</returns>
     private bool CauldronCheckAndRun(CauldronController cauldron) {
         // Does the collided object contain a CauldronCrafting component? I.e. is it a cauldron.
-        if (cauldron != null && cauldron == playerCauldron) {
+        if (cauldron == playerCauldron) {
             Debug.Log("I Have Collided with my cauldron!");
             if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
                 // Give left inventory slot to cauldron (even if empty)
@@ -135,71 +139,67 @@ public class PlayerController : MonoBehaviour {
     /// <returns>Returns whether the IngredientInformation component is not null.</returns>
     private bool IngredientCheckAndRun(IngredientInformation ingredient) {
         // Does the collided object contain an INgredientInformation component? I.e. is it an ingredient
-        if (ingredient != null) {
-            if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
-                // Is the left inventory slot occuppied?
-                switch (_leftInventorySlot == null)
-                {
-                    // Pick up ingredient.
-                    case true:
-                        _leftInventorySlot = ingredient.mIngredient;
-                        return true;
-                    // Swap ingredient with inventory slot.
-                    case false:
-                        InteractiveObject intermediary = _leftInventorySlot;
-                        _leftInventorySlot = ingredient.mIngredient;
-                        intermediary.SpawnObject(transform.position);
-                        return true;
-                }
-            } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber)) {
-                // Is the up inventory slot occuppied?
-                switch (_upInventorySlot == null)
-                {
-                    // Pick up ingredient.
-                    case true:
-                        _upInventorySlot = ingredient.mIngredient;
-                        return true;
-                    // Swap ingredient with inventory slot.
-                    case false:
-                        InteractiveObject intermediary = _upInventorySlot;
-                        _upInventorySlot = ingredient.mIngredient;
-                        intermediary.SpawnObject(transform.position);
-                        return true;
-                }
-            } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber)) {
-                // Is the right inventory slot occuppied?
-                switch (_rightInventorySlot == null)
-                {
-                    // Pick up ingredient.
-                    case true:
-                        _rightInventorySlot = ingredient.mIngredient;
-                        return true;
-                    // Swap ingredient with inventory slot.
-                    case false:
-                        InteractiveObject intermediary = _rightInventorySlot;
-                        _rightInventorySlot = ingredient.mIngredient;
-                        intermediary.SpawnObject(transform.position);
-                        return true;
-                }
-            } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber)) {
-                // Is the down inventory slot occuppied?
-                switch (_downInventorySlot == null)
-                {
-                    // Pick up ingredient.
-                    case true:
-                        _downInventorySlot = ingredient.mIngredient;
-                        return true;
-                    // Swap ingredient with inventory slot.
-                    case false:
-                        InteractiveObject intermediary = _downInventorySlot;
-                        _downInventorySlot = ingredient.mIngredient;
-                        intermediary.SpawnObject(transform.position);
-                        return true;
-                }
+        if (Input.GetButtonDown("LeftFace" + _mPlayerNumber)) {
+            // Is the left inventory slot occuppied?
+            switch (_leftInventorySlot == null)
+            {
+                // Pick up ingredient.
+                case true:
+                    _leftInventorySlot = ingredient.mIngredient;
+                    return true;
+                // Swap ingredient with inventory slot.
+                case false:
+                    InteractiveObject intermediary = _leftInventorySlot;
+                    _leftInventorySlot = ingredient.mIngredient;
+                    intermediary.SpawnObject(transform.position);
+                    return true;
             }
-            return false;
+        } else if (Input.GetButtonDown("UpFace" + _mPlayerNumber)) {
+            // Is the up inventory slot occuppied?
+            switch (_upInventorySlot == null)
+            {
+                // Pick up ingredient.
+                case true:
+                    _upInventorySlot = ingredient.mIngredient;
+                    return true;
+                // Swap ingredient with inventory slot.
+                case false:
+                    InteractiveObject intermediary = _upInventorySlot;
+                    _upInventorySlot = ingredient.mIngredient;
+                    intermediary.SpawnObject(transform.position);
+                    return true;
+            }
+        } else if (Input.GetButtonDown("RightFace" + _mPlayerNumber)) {
+            // Is the right inventory slot occuppied?
+            switch (_rightInventorySlot == null)
+            {
+                // Pick up ingredient.
+                case true:
+                    _rightInventorySlot = ingredient.mIngredient;
+                    return true;
+                // Swap ingredient with inventory slot.
+                case false:
+                    InteractiveObject intermediary = _rightInventorySlot;
+                    _rightInventorySlot = ingredient.mIngredient;
+                    intermediary.SpawnObject(transform.position);
+                    return true;
+            }
+        } else if (Input.GetButtonDown("DownFace" + _mPlayerNumber)) {
+            // Is the down inventory slot occuppied?
+            switch (_downInventorySlot == null)
+            {
+                // Pick up ingredient.
+                case true:
+                    _downInventorySlot = ingredient.mIngredient;
+                    return true;
+                // Swap ingredient with inventory slot.
+                case false:
+                    InteractiveObject intermediary = _downInventorySlot;
+                    _downInventorySlot = ingredient.mIngredient;
+                    intermediary.SpawnObject(transform.position);
+                    return true;
+            }
         }
-        // Collision is not with ingredient.
         return false;
     }
 }
