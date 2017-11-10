@@ -73,7 +73,9 @@ public class MapGenerator : MonoBehaviour {
 		List<Vector3> cauldronVector = new List<Vector3>() {Cauldron1, Cauldron2, Cauldron3, Cauldron4};
 		for (int i = 0;  i < cauldronVector.Count; i++ ){
 			GameObject tempObj = Instantiate(Resources.Load<GameObject>("Prefabs/Cauldron"), cauldronVector[i], Quaternion.identity);
-			tempObj.name = "Cauldron" + (i+1);
+			tempObj.transform.parent = mapHolder;
+			tempObj.name = "Cauldron" + (i+1)
+			;
 		}
 
 		// Spawning Obstacles 
